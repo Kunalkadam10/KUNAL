@@ -1,0 +1,36 @@
+ Find if there is a subarray with a sum equal to a given value.
+
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+bool subarraySum(int arr[], int n, int sum) {
+    unordered_map<int, int> prefixSum;
+    int currentSum = 0;
+    
+    for (int i = 0; i < n; i++) {
+        currentSum += arr[i];
+        if (currentSum == sum) {
+            return true;
+        }
+        if (prefixSum.find(currentSum - sum) != prefixSum.end()) {
+            return true;
+        }
+        prefixSum[currentSum] = i;
+    }
+    return false;
+}
+
+int main() {
+    int arr[] = {1, 4, 20, 3, 10, 5};
+    int n = 6;
+    int sum = 33;
+    if (subarraySum(arr, n, sum)) {
+        cout << "Subarray with given sum exists." << endl;
+    } else {
+        cout << "No subarray with given sum." << endl;
+    }
+    return 0;
+}
+output
+Subarray with given sum exists.

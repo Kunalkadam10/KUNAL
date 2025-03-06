@@ -1,0 +1,43 @@
+Perform BFS on a graph represented as an adjacency matrix.
+
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+void BFS(int start, vector<vector<int>>& adjMatrix, vector<bool>& visited) {
+    queue<int> q;
+    q.push(start);
+    visited[start] = true;
+    
+    while (!q.empty()) {
+        int v = q.front();
+        q.pop();
+        cout << v << " ";
+        
+        for (int i = 0; i < adjMatrix[v].size(); i++) {
+            if (adjMatrix[v][i] == 1 && !visited[i]) {
+                q.push(i);
+                visited[i] = true;
+            }
+        }
+    }
+}
+
+int main() {
+    vector<vector<int>> adjMatrix = {{0, 1, 0, 1},
+                                      {1, 0, 1, 0},
+                                      {0, 1, 0, 0},
+                                      {1, 0, 0, 0}};
+    int n = adjMatrix.size();
+    vector<bool> visited(n, false);
+    
+    cout << "BFS traversal starting from vertex 0: ";
+    BFS(0, adjMatrix, visited);
+    cout << endl;
+    
+    return 0;
+}
+
+output
+BFS traversal starting from vertex 0: 0 1 3 2 

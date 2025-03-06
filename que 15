@@ -1,0 +1,26 @@
+Given a string, find the first non-repeating character.
+
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+char firstNonRepeating(string s) {
+    unordered_map<char, int> freq;
+    for (char c : s) {
+        freq[c]++;
+    }
+    for (char c : s) {
+        if (freq[c] == 1) {
+            return c;
+        }
+    }
+    return '\0';
+}
+
+int main() {
+    string s = "geeksforgeeks";
+    cout << "First non-repeating character: " << firstNonRepeating(s) << endl;
+    return 0;
+}
+output
+First non-repeating character: f

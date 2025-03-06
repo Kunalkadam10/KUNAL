@@ -1,0 +1,21 @@
+Find the k-th smallest element in an unsorted array.
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int kthSmallest(vector<int>& arr, int k) {
+    sort(arr.begin(), arr.end());
+    return arr[k - 1];
+}
+
+int main() {
+    vector<int> arr = {12, 3, 5, 7, 19};
+    int k = 2;
+    cout << "The " << k << "-th smallest element is: " << kthSmallest(arr, k) << endl;
+    return 0;
+}
+
+o/p
+The 2-th smallest element is: 5

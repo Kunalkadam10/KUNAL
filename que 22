@@ -1,0 +1,33 @@
+ Find all prime numbers up to a given number n.
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void sieveOfEratosthenes(int n) {
+    vector<bool> prime(n + 1, true);
+    prime[0] = prime[1] = false;
+    
+    for (int p = 2; p * p <= n; p++) {
+        if (prime[p]) {
+            for (int i = p * p; i <= n; i += p) {
+                prime[i] = false;
+            }
+        }
+    }
+    
+    for (int i = 2; i <= n; i++) {
+        if (prime[i]) cout << i << " ";
+    }
+}
+
+int main() {
+    int n = 30;
+    cout << "Prime numbers up to " << n << ": ";
+    sieveOfEratosthenes(n);
+    cout << endl;
+    return 0;
+}
+
+o/p
+ Prime numbers up to 30: 2 3 5 7 11 13 17 19 23 29
